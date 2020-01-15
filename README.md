@@ -22,6 +22,10 @@
 
 测试链接：[https://donate.idealclover.cn](https://donate.idealclover.cn)
 
+手机查看效果可扫描以下二维码
+
+![donate](https://image.idealclover.cn/projects/Click-to-Donate/donate.png)
+
 ## 如何部署
 
 1. star 并 clone 本项目
