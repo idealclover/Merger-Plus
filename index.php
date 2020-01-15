@@ -18,7 +18,7 @@ $ua = $_SERVER['HTTP_USER_AGENT'];
 
 if (strpos($ua, 'MicroMessenger')) {
     // 对微信的特殊关照：引导扫码支付及浏览器打开
-    echo ("<html><img src='./static/wechat_pay.png' style='width: 100%'></img></html>");
+    echo ("<html><img src='./qr/wechat_pay.png' style='width: 100%'></img></html>");
     exit;
 } elseif (strpos($ua, 'AlipayClient')) {
     // 对支付宝的特殊关照：直接调用支付宝
