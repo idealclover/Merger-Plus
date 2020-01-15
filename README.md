@@ -20,7 +20,7 @@
 
 * 其他手机浏览器内核：直接跳转打开支付宝收款
 
-测试链接：[https://pay.idealclover.cn](https://pay.idealclover.cn)
+测试链接：[https://donate.idealclover.cn](https://donate.idealclover.cn)
 
 ## 如何部署
 
