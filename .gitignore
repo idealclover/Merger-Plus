@@ -1,1 +1,22 @@
-.php_cs.cache
+
+# dotenv
+.env
+
+# dependencies
+node_modules
+
+# logs
+npm-debug.log
+
+# Nuxt build
+.nuxt
+
+# Nuxt generate
+dist
+
+# IDEA
+.idea
+.DS_Store
+
+dist
+archive

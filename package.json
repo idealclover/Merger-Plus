@@ -1,0 +1,25 @@
+{
+  "name": "click-to-donate",
+  "description": "提供一键从浏览器跳转至支付宝/微信支付的能力，帮助个人开发者完成打赏功能实现",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/idealclover/Click-to-Donate.git",
+    "type": "git"
+  },
+  "scripts": {
+    "build": "poi --prod",
+    "dev": "poi --serve",
+    "stdver": "standard-version -m '[skip ci] chore(release): v%s'"
+  },
+  "devDependencies": {
+    "dotenv": "^8.0.0",
+    "poi": "^12.6.10",
+    "qr-image": "^3.2.0",
+    "standard-version": "^6.0.1"
+  },
+  "dependencies": {
+    "qrcode": "^1.3.3"
+  }
+}

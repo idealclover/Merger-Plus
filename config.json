@@ -1,0 +1,21 @@
+{
+  "profile": "https://image.idealclover.cn/blog/assets/icon.png",
+  "name": "idealclover",
+  "description": "来给翠翠投喂棒棒糖吧🍭",
+  "tenpay": {
+    "title": "QQ手机版扫一扫 投喂翠翠",
+    "url": "https://vac.qq.com/wallet/qrcode.htm?m=tenpay&a=1&u=1455169173&ac=BE7F6A40B177C4558EAF9F8049F4A5BF5596E6985312BE2A2C574D0C8B1B593E&n=504%20Gateway%20Timeout&f=wallet"
+  },
+  "wechatpay": {
+    "title": "微信扫一扫 投喂翠翠",
+    "url": "wxp://f2f06W7B_VcXSogUH73o9rPpeEs2jsGfVtr0"
+  },
+  "alipay": {
+    "title": "支付宝扫一扫 投喂翠翠",
+    "url": "https://qr.alipay.com/FKX00710CQCHIHK4B9CA31",
+    "open_url": "alipays://platformapi/startapp?appId=10000007&qrcode=https://qr.alipay.com/FKX00710CQCHIHK4B9CA31"
+  },
+  "paypal": {
+    "url": "https://www.paypal.com/paypalme/idealclover?locale.x=zh_XC"
+  }
+}
