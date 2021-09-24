@@ -6,11 +6,11 @@
 
 - PC 端显示效果
 
-![PC](https://sm.ms/image/bDRBvuknsKTpafW)
+![PC](https://i.loli.net/2021/09/24/bDRBvuknsKTpafW.png)
 
 - 移动端显示效果
 
-<img src="https://sm.ms/image/L8vdo1c9uRfmAq6" width="250">
+<img src="https://i.loli.net/2021/09/24/L8vdo1c9uRfmAq6.png" width="250">
 
 - json 文件轻松配置 三分钟搭建自己的捐赠页
 - 移动端支持直接调起支付宝，无法调起时不影响其他方式投喂
