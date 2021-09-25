@@ -101,13 +101,9 @@ window.onload = function() {
 
   // 针对QQ直接出拦截
   if (ua.browser.name == "QQ") {
-    let div = document.createElement("div");
-    div.id = "tip";
-    div.innerHTML =
-      '<img src="https://i.loli.net/2019/06/25/5d11d9c19065848452.png" style="max-width: 100%;width: 100%; height: auto;" alt="浏览器打开"/>';
-    div.style =
-      "position: fixed; left:0; top:0; background: rgba(0,0,0,0.8); filter:alpha(opacity=80); width: 100%; height:100%; z-index: 1050;} #weixin-tip p{text-align: center; margin-top: 10%; padding:0 5%;";
-    document.body.appendChild(div);
+    document.getElementById("tip-img").src =
+      "https://i.loli.net/2019/06/25/5d11d9c19065848452.png";
+    document.getElementById("tip").style.display = "block";
   }
 
   // 如果是微信且支持微信支付，则默认打开微信
