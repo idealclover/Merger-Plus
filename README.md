@@ -17,7 +17,10 @@
 本项目基于 [hifocus/merger](https://github.com/hifocus/merger) 上开发 ~~但其实基本把大部分代码都重新写了个遍~~ 在项目基础上实现的 Feature：
 
 - JSON 文件轻松配置 三分钟搭建自己的捐赠页
+- 所有文案表述全部走配置，在 JSON 中自定义全部文案
 - 移动端支持加载时/选择支付宝时直接调起支付宝，无法调起时不影响其他方式投喂
+  - 注：微信仅支持iOS调起，QQ仅支持iOS/Android调起
+- 即使选择微信支付/QQ支付，在保存二维码后，可通过scheme直接唤起扫一扫
 - 微信内打开直接调起微信二维码，长按扫描即可投喂
 - 小改了一下页面的样式，能更显著显示投喂按钮
 - 大改了实现逻辑，生成页面更静态，性能更好
@@ -67,13 +70,14 @@ yarn build
     "savetext": "保存二维码" //保存按钮文案
     "wechattitle": "长按图片扫一扫 投喂翠翠", //微信专用，微信二维码在微信内打开的标题
     "wechattext": "如使用其他方式付款，请点击右上角<br />并选择”在浏览器打开“" //微信专用，微信二维码在微信内打开的文案
+    "toapptext": "保存完成，去微信扫一扫" //scheme调起微信
   },
   "tenpay": { //QQ钱包 没有可以去掉
     "title": "QQ手机版扫一扫 投喂翠翠", //QQ钱包弹窗标题
     "othertitle": "长按图片保存，在手机QQ打开<br />😘感谢投喂翠翠", //针对无法下载情况的标题
     "url": "https://vac.qq.com/wallet/qrcode.htm?m=tenpay&a=1&u=1455169173&ac=BE7F6A40B177C4558EAF9F8049F4A5BF5596E6985312BE2A2C574D0C8B1B593E&n=504%20Gateway%20Timeout&f=wallet" //QQ钱包跳转链接
     "savetext": "保存二维码" //保存按钮文案
-
+    "toapptext": "保存完成，去手机QQ扫一扫" //scheme调起手机QQ
   },
   "paypal": { //paypal钱包，没有可以去掉
     "url": "https://www.paypal.com/paypalme/idealclover?locale.x=zh_XC" //paypal链接

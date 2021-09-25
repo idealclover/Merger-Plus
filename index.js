@@ -75,8 +75,11 @@ async function openDialog(obj) {
   }
 }
 
+let toappbtn = document.getElementById("toappbtn");
+
 if (DATA.alipay) {
   document.getElementById("alipaybtn").onclick = function() {
+    toappbtn.style.display = "none";
     let open_url = DATA.alipay.open_url;
     if (open_url) open_url && location.assign(open_url);
     openDialog(DATA.alipay);
@@ -85,12 +88,22 @@ if (DATA.alipay) {
 
 if (DATA.wechatpay) {
   document.getElementById("wechatpaybtn").onclick = function() {
+    if (ua.os.name == "iOS") {
+      toappbtn.style.display = "";
+      toappbtn.href = "weixin://scanqrcode";
+      toappbtn.innerHTML = DATA.wechatpay.toapptext;
+    }
     openDialog(DATA.wechatpay);
   };
 }
 
 if (DATA.tenpay) {
   document.getElementById("tenpaybtn").onclick = function() {
+    if (ua.os.name == "iOS" || ua.os.name == "Android") {
+      toappbtn.style.display = "";
+      toappbtn.href = "mqq://qrcode/scan_qrcode?version=1&src_type=app";
+      toappbtn.innerHTML = DATA.tenpay.toapptext;
+    }
     openDialog(DATA.tenpay);
   };
 }
@@ -107,6 +120,7 @@ window.onload = function() {
   }
   // UA 调试用
   // alert(ua.browser.name);
+  // alert(ua.os.name);
 
   // 针对QQ直接出拦截
   // 反正也没人用QQ钱包，关键问题是QQ还只能长按保存，不能直接调起支付宝
