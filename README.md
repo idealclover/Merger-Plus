@@ -8,11 +8,11 @@
 
 - PC 端显示效果
 
-![PC](https://i.loli.net/2021/09/24/bDRBvuknsKTpafW.png)
+<a href="https://donate.new.idealclover.cn" target="_blank"><img src="https://i.loli.net/2021/09/24/bDRBvuknsKTpafW.png" alt="PC"></a>
 
 - 移动端显示效果
 
-<img src="https://i.loli.net/2021/09/24/L8vdo1c9uRfmAq6.png" width="250">
+<a href="https://donate.new.idealclover.cn" target="_blank"><img src="https://i.loli.net/2021/09/24/L8vdo1c9uRfmAq6.png" width="250" alt="Mobile"></a>
 
 本项目基于 [hifocus/merger](https://github.com/hifocus/merger) 上开发 ~~但其实基本把大部分代码都重新写了个遍~~ 在项目基础上实现的 Feature：
 
