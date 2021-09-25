@@ -35,24 +35,21 @@
             </svg>
             支付宝
           </a>
-          <% } %>
-          <% if (DATA.wechatpay) { %>
+          <% } %> <% if (DATA.wechatpay) { %>
           <a href="#showqrcode" class="btn btn-primary" id="wechatpaybtn">
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-wechatpay"></use>
             </svg>
             微信支付
           </a>
-          <% } %>
-          <% if (DATA.tenpay) { %>
+          <% } %> <% if (DATA.tenpay) { %>
           <a href="#showqrcode" class="btn btn-primary" id="tenpaybtn">
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-tenpay"></use>
             </svg>
             QQ钱包
           </a>
-          <% } %>
-          <% if (DATA.paypal) { %>
+          <% } %> <% if (DATA.paypal) { %>
           <button
             class="btn btn-primary"
             id="paypalbtn"
@@ -87,13 +84,28 @@
         </div>
         <div class="modal-body">
           <div class="content">
-            <img id="currentqrcode" class="img smaller" />
+            <div style="display: block;">
+              <img id="currentqrcode" class="img smaller" alt="qrcode.png" />
+            </div>
+            <div style="display: block;">
+              <a
+                class="btn btn-primary"
+                id="saveqrbtn"
+                style="display:none;"
+              ></a>
+            </div>
+            <% if (DATA.wechatpay) { %>
+            <div id="openinbrower" style="display:none;">
+              <%= DATA.wechatpay.wechattext %>
+            </div>
+            <% } %>
           </div>
         </div>
       </div>
     </div>
     <div id="footer" styld="z-index: 10;">
-      ©2021 made with ❤️ by <a href="https://idealclover.top" target="_blank">idealclover</a>
+      ©2021 made with ❤️ by
+      <a href="https://idealclover.top" target="_blank"> idealclover</a>
     </div>
     <a
       href="https://github.com/idealclover/Click-to-Donate"

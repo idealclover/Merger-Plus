@@ -20,6 +20,8 @@
     "standard-version": "^6.0.1"
   },
   "dependencies": {
-    "qrcode": "^1.3.3"
+    "canvas": "^2.8.0",
+    "qrcode": "^1.3.3",
+    "ua-parser-js": "^0.7.28"
   }
 }

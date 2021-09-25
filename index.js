@@ -1,19 +1,30 @@
 import Qrcode from "qrcode";
-const ua = navigator.userAgent;
-const isWechat = /micromessenger/i.test(ua);
+const { createCanvas, loadImage } = require("canvas");
 
-function showqrcode(qrcode) {
+var parser = require("ua-parser-js");
+const ua = parser(navigator.userAgent);
+console.log(ua);
+
+async function showqrcode(url) {
   document.getElementById("showqrcode").style.display = "flex";
-  Qrcode.toDataURL(
-    qrcode,
+  const canvas = createCanvas(320, 320);
+  Qrcode.toCanvas(
+    canvas,
+    url,
     {
       width: 320,
       height: 320,
     },
-    function(err, url) {
-      document.getElementById("currentqrcode").src = url;
+    function(error) {
+      if (error) console.error(error);
+      console.log("success!");
     }
   );
+  const ctx = canvas.getContext("2d");
+  ctx.imageSmoothingEnabled = false;
+  const image = await loadImage(DATA.qrlogo);
+  ctx.drawImage(image, 138, 138, 44, 44);
+  return canvas.toDataURL("image/png");
 }
 
 function closeqrcode() {
@@ -24,9 +35,37 @@ function closeqrcode() {
 
 document.getElementById("qrcodeclose").onclick = closeqrcode;
 
-function openDialog(obj) {
-  document.getElementById("titleinfo").innerHTML = obj.title;
-  showqrcode(obj.url);
+async function openDialog(obj) {
+  let dataURL = await showqrcode(obj.url);
+  document.getElementById("currentqrcode").src = dataURL;
+
+  if (ua.browser.name == "QQ") {
+    //QQ内浏览器：长按图片可下载，但无法点击下载按钮（iOS无法完成下载，但长按图片可保存；安卓会保存到下载而非相册）
+    //应对方案：提醒长按图片保存，不设置下载按钮
+    document.getElementById("titleinfo").innerHTML = obj.othertitle;
+  } else if (ua.browser.name == "WeChat") {
+    //微信内浏览器：微信图片可长按直接调起支付码，但无法点击下载按钮
+    //应对方案：取消保存图片，仅能使用微信支付
+    document.getElementById("titleinfo").innerHTML = DATA.wechatpay.wechattitle;
+    saveqrbtn.style.display = "none";
+    document.getElementById("qrcodeclose").style.display = "none";
+    document.getElementById("openinbrower").style.display = "block";
+  } else if (ua.os.name == "iOS") {
+    //iOS好多下载不正常的浏览器
+    //Safari/Firefox/Chrome/Edge/QQBrower：iOS端不正常，无法完成下载，但长按图片可保存
+    //应对方案：提醒长按图片保存，不设置下载按钮
+    document.getElementById("titleinfo").innerHTML = obj.othertitle;
+  } else {
+    //正常情况，出现保存图片按钮
+    document.getElementById("titleinfo").innerHTML = obj.title;
+    let saveqrbtn = document.getElementById("saveqrbtn");
+    saveqrbtn.style.display = "inline-block";
+    saveqrbtn.innerHTML = obj.savetext;
+    // 我也不知道下面两个写法哪个对
+    // saveqrbtn.href = dataURL.replace("image/png", "image/octet-stream");
+    saveqrbtn.href = dataURL;
+    saveqrbtn.download = "qrcode.png";
+  }
 }
 
 if (DATA.alipay) {
@@ -57,8 +96,11 @@ window.onload = function() {
     let open_url = DATA.alipay.open_url;
     if (open_url) open_url && location.assign(open_url);
   }
+  // UA 调试用
+  // alert(ua.browser.name);
   // 如果是微信，则默认打开微信
   if (DATA.wechatpay) {
-    if (isWechat) document.getElementById("wechatpaybtn").click();
+    if (ua.browser.name == "WeChat")
+      document.getElementById("wechatpaybtn").click();
   }
 };
