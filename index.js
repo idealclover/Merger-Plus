@@ -38,22 +38,22 @@ document.getElementById("qrcodeclose").onclick = closeqrcode;
 async function openDialog(obj) {
   let dataURL = await showqrcode(obj.url);
   document.getElementById("currentqrcode").src = dataURL;
-
+  document.getElementById("titleinfo").innerHTML = obj.othertitle;
   if (ua.browser.name == "QQ") {
-    //QQ内浏览器：长按图片可下载，但无法点击下载按钮（iOS无法完成下载，但长按图片可保存；安卓会保存到下载而非相册）
-    //应对方案：提醒长按图片保存，不设置下载按钮
+    // QQ内浏览器：长按图片可下载，但无法点击下载按钮（iOS无法完成下载，但长按图片可保存；安卓会保存到下载而非相册）
+    // 应对方案：引导浏览器打开，提醒长按图片保存，不设置下载按钮
     document.getElementById("titleinfo").innerHTML = obj.othertitle;
   } else if (ua.browser.name == "WeChat") {
-    //微信内浏览器：微信图片可长按直接调起支付码，但无法点击下载按钮
-    //应对方案：取消保存图片，仅能使用微信支付
+    // 微信内浏览器：微信图片可长按直接调起支付码，但无法点击下载按钮
+    // 应对方案：取消保存图片，仅能使用微信支付
     document.getElementById("titleinfo").innerHTML = DATA.wechatpay.wechattitle;
     saveqrbtn.style.display = "none";
     document.getElementById("qrcodeclose").style.display = "none";
     document.getElementById("openinbrower").style.display = "block";
   } else if (ua.os.name == "iOS") {
-    //iOS好多下载不正常的浏览器
-    //Safari/Firefox/Chrome/Edge/QQBrower：iOS端不正常，无法完成下载，但长按图片可保存
-    //应对方案：提醒长按图片保存，不设置下载按钮
+    // iOS好多下载不正常的浏览器
+    // Safari/Firefox/Chrome/Edge/QQBrower：iOS端不正常，无法完成下载，但长按图片可保存
+    // 应对方案：提醒长按图片保存，不设置下载按钮
     document.getElementById("titleinfo").innerHTML = obj.othertitle;
   } else {
     //正常情况，出现保存图片按钮
@@ -98,7 +98,19 @@ window.onload = function() {
   }
   // UA 调试用
   // alert(ua.browser.name);
-  // 如果是微信，则默认打开微信
+
+  // 针对QQ直接出拦截
+  if (ua.browser.name == "QQ") {
+    let div = document.createElement("div");
+    div.id = "tip";
+    div.innerHTML =
+      '<img src="https://i.loli.net/2019/06/25/5d11d9c19065848452.png" style="max-width: 100%;width: 100%; height: auto;" alt="浏览器打开"/>';
+    div.style =
+      "position: fixed; left:0; top:0; background: rgba(0,0,0,0.8); filter:alpha(opacity=80); width: 100%; height:100%; z-index: 1050;} #weixin-tip p{text-align: center; margin-top: 10%; padding:0 5%;";
+    document.body.appendChild(div);
+  }
+
+  // 如果是微信且支持微信支付，则默认打开微信
   if (DATA.wechatpay) {
     if (ua.browser.name == "WeChat")
       document.getElementById("wechatpaybtn").click();
