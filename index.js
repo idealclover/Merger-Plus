@@ -50,9 +50,16 @@ async function openDialog(obj) {
     saveqrbtn.style.display = "none";
     document.getElementById("qrcodeclose").style.display = "none";
     document.getElementById("openinbrower").style.display = "block";
-  } else if (ua.os.name == "iOS") {
+  } else if (
+    ua.os.name == "iOS" ||
+    ["MIUI Browser", "UCBrowser", "Quark", "baidu"].indexOf(ua.browser.name) !=
+      -1
+  ) {
     // iOS好多下载不正常的浏览器
-    // Safari/Firefox/Chrome/Edge/QQBrower：iOS端不正常，无法完成下载，但长按图片可保存
+    // 例如：Safari/Firefox/Chrome/Edge/QQBrower：iOS端不正常，无法完成下载，但长按图片可保存（估计safari内核整体不支持）
+    // 安卓下也有下载不正常的浏览器
+    // 例如：MIUI浏览器/UC浏览器/Quark浏览器/百度浏览器：无法完成下载，但长按图片可保存
+    // 不过：Chrome/Firefox/QQ浏览器/Edge：正常完成下载（估计用的都是版本比较先进的Chrome内核）
     // 应对方案：提醒长按图片保存，不设置下载按钮
     document.getElementById("titleinfo").innerHTML = obj.othertitle;
   } else {
@@ -92,6 +99,8 @@ window.onload = function() {
   document.getElementById("qrcodeclose").click();
   // 如果设置了支付宝直达链接，默认吊起支付宝
   // 使用 location.assign 兼容 ios safari 跳转
+  // 有的浏览器就nm奇葩，比如安卓情况的Edge和百度，第一次无法跳转，之后跳转是正常的，这种就只能在支付宝后面写个“荐”引导使用支付宝了
+  // 必须吐槽一句，太离谱了 rnm 退钱！
   if (DATA.alipay) {
     let open_url = DATA.alipay.open_url;
     if (open_url) open_url && location.assign(open_url);
@@ -100,13 +109,14 @@ window.onload = function() {
   // alert(ua.browser.name);
 
   // 针对QQ直接出拦截
+  // 反正也没人用QQ钱包，关键问题是QQ还只能长按保存，不能直接调起支付宝
   if (ua.browser.name == "QQ") {
     document.getElementById("tip-img").src =
       "https://i.loli.net/2019/06/25/5d11d9c19065848452.png";
     document.getElementById("tip").style.display = "block";
   }
 
-  // 如果是微信且支持微信支付，则默认打开微信
+  // 如果是微信且支持微信支付，则默认打开微信，微信可以直接识别付款码
   if (DATA.wechatpay) {
     if (ua.browser.name == "WeChat")
       document.getElementById("wechatpaybtn").click();
