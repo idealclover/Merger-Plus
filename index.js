@@ -88,7 +88,7 @@ if (DATA.alipay) {
 
 if (DATA.wechatpay) {
   document.getElementById("wechatpaybtn").onclick = function() {
-    if (ua.os.name == "iOS") {
+    if (ua.os.name == "iOS" && ua.browser.name != "WeChat") {
       toappbtn.style.display = "";
       toappbtn.href = "weixin://scanqrcode";
       toappbtn.innerHTML = DATA.wechatpay.toapptext;
