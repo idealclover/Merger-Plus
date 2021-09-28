@@ -1,11 +1,11 @@
 {
-  "name": "click-to-donate",
-  "description": "提供一键从浏览器跳转至支付宝/微信支付的能力，帮助个人开发者完成打赏功能实现",
+  "name": "merger-plus",
+  "description": "提供从浏览器跳转至支付宝/微信支付/QQ支付/Paypal的能力，帮助个人开发者完成打赏功能实现",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT",
+  "license": "GPL-3.0-or-later",
   "repository": {
-    "url": "https://github.com/idealclover/Click-to-Donate.git",
+    "url": "https://github.com/idealclover/Merger-Plus.git",
     "type": "git"
   },
   "scripts": {
