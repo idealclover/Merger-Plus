@@ -112,9 +112,10 @@ window.onload = function() {
   document.getElementById("qrcodeclose").click();
   // 如果设置了支付宝直达链接，默认吊起支付宝
   // 使用 location.assign 兼容 ios safari 跳转
-  // 有的浏览器就nm奇葩，比如安卓情况的Edge和百度，第一次无法跳转，之后跳转是正常的，这种就只能在支付宝后面写个“荐”引导使用支付宝了
-  // 必须吐槽一句，太离谱了 rnm 退钱！
-  if (DATA.alipay) {
+  let reg = new RegExp("(^|&)open=([^&]*)(&|$)", "i");
+  let r = window.location.search.substr(1).match(reg);
+  if (r != null && r[2] == "true" && DATA.alipay) {
+    console.log("instant open set to true");
     let open_url = DATA.alipay.open_url;
     if (open_url) open_url && location.assign(open_url);
   }
