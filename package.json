@@ -9,7 +9,7 @@
     "type": "git"
   },
   "scripts": {
-    "build": "poi --prod",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider poi --prod",
     "dev": "poi --serve"
   },
   "devDependencies": {
